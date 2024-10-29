@@ -11,12 +11,12 @@ export const RealStateForm = () => {
   const [activeTab, setActiveTab] = useState("draft");
 
   return (
-    <div className="w-screen flex justify-center  py-20 min-h-screen">
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="mb-4">
-          <TabsTrigger value="draft">Draft-To-Description</TabsTrigger>
-          <TabsTrigger value="photos">Photos-To-Description</TabsTrigger>
-          <TabsTrigger value="social">Social Media Copy</TabsTrigger>
+    <div className=" flex justify-center  py-20 min-h-screen">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-[80vw]">
+        <TabsList className="mb-4 md:flex-row flex flex-col">
+          <TabsTrigger  className='my-2' value="draft">Draft-To-Description</TabsTrigger>
+          <TabsTrigger className='my-2' value="photos">Photos-To-Description</TabsTrigger>
+          <TabsTrigger className='my-2'  value="social">Social Media Copy</TabsTrigger>
         </TabsList>
 
         <TabsContent value="draft">
