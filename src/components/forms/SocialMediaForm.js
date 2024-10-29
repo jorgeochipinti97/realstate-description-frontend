@@ -15,6 +15,7 @@ import {
 import { Sparkles } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import axios from "axios";
 
 export const SocialMediaForm = () => {
   const [description, setDescription] = useState("");
