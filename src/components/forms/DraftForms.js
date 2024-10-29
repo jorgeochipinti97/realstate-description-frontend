@@ -33,7 +33,7 @@ export const DraftForm = () => {
 
   const onSubmit = async (data) => {
     const reponse = await axios.post(
-      "https://impartial-benevolence.up.railway.app/description",
+      "https://realstate-description-api-production.up.railway.app/description",
       data
     );
     console.log(reponse);
