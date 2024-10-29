@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/AppSidebar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ModeToggle } from "@/components/ModeToggle";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -35,6 +36,7 @@ export default function RootLayout({ children, pageProps }) {
                 </div>
 
                 {children}
+                <Toaster />
               </main>
             </SidebarProvider>
           </ClerkProvider>
