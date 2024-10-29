@@ -24,7 +24,6 @@ export const SocialMediaForm = () => {
     defaultValues: {
       platform: "facebook",
       language: "",
-      tone: "",
       keyFeatures: "",
     },
   });
@@ -120,38 +119,19 @@ export const SocialMediaForm = () => {
               )}
             />
           </div>
-          <div>
-            <Label>Tone</Label>
-            <Controller
-              name="toneSocial"
-              control={control}
-              render={({ field }) => (
-                <Select {...field}>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select tone" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="default">Default</SelectItem>
-                    <SelectItem value="formal">Formal</SelectItem>
-                    <SelectItem value="excited">Excited</SelectItem>
-                  </SelectContent>
-                </Select>
-              )}
-            />
-          </div>
         </div>
 
         <Button type="submit" className="w-full">
           <Sparkles className="mr-2 h-4 w-4" />
           Generate Social Media Copy
         </Button>
-      </div>
-      <div className="items-start flex justify-center mt-10 ">
-        <Textarea
-          className="border-2 h-[50vh]  border-black w-screen"
-          placeholder="aqui se generara su descripcion"
-          value={description}
-        />
+        <div className="items-start flex justify-center mt-10 ">
+          <Textarea
+            className="border-2 h-[50vh]  border-black w-screen"
+            placeholder="aqui se generara su descripcion"
+            value={description}
+          />
+        </div>
       </div>
     </form>
   );
