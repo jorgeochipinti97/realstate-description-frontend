@@ -53,7 +53,7 @@ export const DraftForm = () => {
   };
 
   return (
-    <div>
+    <div className="mt-20 md:mt-0 ">
       <form onSubmit={handleSubmit(onSubmit)} className="dark:text-black">
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-2xl font-semibold mb-6">Draft-To-Description</h2>
@@ -86,7 +86,7 @@ export const DraftForm = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-3 gap-4 mb-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div>
               <Label>Number of Rooms</Label>
               <Input
@@ -183,11 +183,11 @@ export const DraftForm = () => {
             <Sparkles className="mr-2 h-4 w-4" />
             Generate Description
           </Button>
+      <div className="items-start flex justify-center mt-10 ">
+        <Textarea className='border-2 h-[50vh]  border-black w-screen'  placeholder='aqui se generara su descripcion' value={description}/>
+      </div>
         </div>
       </form>
-      <div className="mt-10">
-        <Textarea  placeholder='aqui se generara su descripcion' value={description}/>
-      </div>
     </div>
   );
 };

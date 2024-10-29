@@ -20,7 +20,7 @@ export const PhotosForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="dark:text-black">
+    <form onSubmit={handleSubmit(onSubmit)} className="dark:text-black mt-20 md:mt-0">
     <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-2xl font-semibold mb-6">
                 Photos-To-Description

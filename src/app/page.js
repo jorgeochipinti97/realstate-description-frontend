@@ -7,9 +7,9 @@ import { RealStateForm } from "@/components/Form";
 export default function Home() {
   return (
     <div className="w-screen">
-      <div className="w-screen justify-center flex-shrink">
-        <div className="w-[90vw]  h-[60vh] mt-10">
-          <RealStateForm/>
+      <div className="w-screen min-h-screen flex items-center justify-center ">
+        <div className="w-[90vw]  ">
+          <RealStateForm />
         </div>
       </div>
     </div>
