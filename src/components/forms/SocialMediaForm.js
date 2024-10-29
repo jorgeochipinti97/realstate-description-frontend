@@ -13,8 +13,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Sparkles } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 export const SocialMediaForm = () => {
+  const [description, setDescription] = useState("");
+  const { toast } = useToast();
   const { control, handleSubmit, register } = useForm({
     defaultValues: {
       platform: "facebook",
@@ -24,35 +28,46 @@ export const SocialMediaForm = () => {
     },
   });
 
-  const onSubmit = (data) => {
-    console.log("SocialMediaForm Data:", data);
+  const onSubmit = async (data) => {
+    toast({ title: "Aguarde un momento por favor" });
+    try {
+      const response = await axios.post(
+        "https://realstate-description-api-production.up.railway.app/description",
+        data
+      );
+      if (response) {
+        toast({ title: "Descripción generada con éxito" });
+        setDescription(response.data);
+      }
+    } catch (err) {
+      toast({ title: "Algo salio mal", variant: "destructive" });
+      console.log(err);
+    }
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="dark:text-black mt-20 md:mt-0">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="dark:text-black mt-20 md:mt-0"
+    >
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-semibold mb-6">Social Media Copy</h2>
 
         <div className="mb-4">
-          <Label>Select Platform</Label>
           <Controller
             name="socialMediaPlatform"
             control={control}
             render={({ field }) => (
-              <RadioGroup {...field} className="flex space-x-4">
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="facebook" />
-                  <Label>Facebook</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="instagram" />
-                  <Label>Instagram</Label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <RadioGroupItem value="twitter" />
-                  <Label>Twitter</Label>
-                </div>
-              </RadioGroup>
+              <Select {...field}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Platform" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="facebook">Facebook</SelectItem>
+                  <SelectItem value="instagram">Instagram</SelectItem>
+                  <SelectItem value="justSold">X (Twitter)</SelectItem>
+                </SelectContent>
+              </Select>
             )}
           />
         </div>
@@ -129,6 +144,13 @@ export const SocialMediaForm = () => {
           <Sparkles className="mr-2 h-4 w-4" />
           Generate Social Media Copy
         </Button>
+      </div>
+      <div className="items-start flex justify-center mt-10 ">
+        <Textarea
+          className="border-2 h-[50vh]  border-black w-screen"
+          placeholder="aqui se generara su descripcion"
+          value={description}
+        />
       </div>
     </form>
   );
