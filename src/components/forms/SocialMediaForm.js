@@ -121,7 +121,7 @@ export const SocialMediaForm = () => {
           </div>
         </div>
 
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full" disabled> 
           <Sparkles className="mr-2 h-4 w-4" />
           Generate Social Media Copy
         </Button>
