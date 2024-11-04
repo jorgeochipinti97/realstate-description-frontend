@@ -5,7 +5,7 @@ import { PhotosForm } from "./forms/photoForms";
 import { SocialMediaForm } from "./forms/SocialMediaForm";
 import { useState } from "react";
 
-export const RealStateForm = () => {
+export const  RealStateForm = () => {
   const [activeTab, setActiveTab] = useState("draft");
 
   return (
