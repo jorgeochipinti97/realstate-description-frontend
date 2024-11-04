@@ -18,7 +18,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 export const DraftForm = () => {
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState('');
   const { toast } = useToast();
   const { control, handleSubmit, register } = useForm({
     defaultValues: {
@@ -39,7 +39,6 @@ export const DraftForm = () => {
     toast({ title: "Aguarde un momento por favor" });
     try {
       const response = await axios.post(
-        // "http://localhost:3000/description",
         "https://realstate-description-api-production.up.railway.app/description",
         data
       );
@@ -184,13 +183,9 @@ export const DraftForm = () => {
             <Sparkles className="mr-2 h-4 w-4" />
             Generate Description
           </Button>
-          <div className="items-start flex justify-center mt-10 ">
-            <Textarea
-              className="border-2 h-[50vh]  border-black w-screen"
-              placeholder="aqui se generara su descripcion"
-              value={description}
-            />
-          </div>
+      <div className="items-start flex justify-center mt-10 ">
+        <Textarea className='border-2 h-[50vh]  border-black w-screen'  placeholder='aqui se generara su descripcion' value={description}/>
+      </div>
         </div>
       </form>
     </div>
