@@ -39,8 +39,8 @@ export const DraftForm = () => {
     toast({ title: "Aguarde un momento por favor" });
     try {
       const response = await axios.post(
-        "http://localhost:3000/description",
-        // "https://realstate-description-api-production.up.railway.app/description",
+        // "http://localhost:3000/description",
+        "https://realstate-description-api-production.up.railway.app/description",
         data
       );
       if (response) {
