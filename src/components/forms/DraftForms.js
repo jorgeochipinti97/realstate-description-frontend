@@ -18,15 +18,20 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
 export const DraftForm = () => {
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState("");
   const { toast } = useToast();
   const { control, handleSubmit, register } = useForm({
     defaultValues: {
-      propertyType: "apartment",
-      rooms: [{ name: "Hall" }, { name: "Kitchen" }],
-      additionalFeatures: "",
-      lang: "",
-      tone: "",
+      propertyType: "apartment", // Tipo de propiedad
+      rooms: [{ name: "Hall" }, { name: "Kitchen" }], // Lista de habitaciones
+      additionalFeatures: "", // Características adicionales de la propiedad
+      lang: "spanish", // Idioma predeterminado
+      tone: "Aspiracional", // Tono predeterminado para la descripción
+      location: "", // Ubicación de la propiedad
+      address: "", // Dirección de la propiedad
+      numRooms: "", // Número de habitaciones
+      area: "", // Área en metros cuadrados
+      floor: "", // Piso en el que se encuentra la propiedad
     },
   });
 
@@ -36,7 +41,7 @@ export const DraftForm = () => {
   });
 
   const onSubmit = async (data) => {
-    toast({ title: "Aguarde un momento por favor" });
+    toast({ title: "Aguarde un momento, por favor..." });
     try {
       const response = await axios.post(
         "https://realstate-description-api-production.up.railway.app/description",
@@ -47,11 +52,11 @@ export const DraftForm = () => {
         setDescription(response.data);
       }
     } catch (err) {
-      toast({ title: "Algo salio mal", variant: "destructive" });
+      const errorMessage = err.response?.data?.message || "Algo salió mal";
+      toast({ title: errorMessage, variant: "destructive" });
       console.log(err);
     }
   };
-
   return (
     <div className="mt-20 md:mt-0 ">
       <form onSubmit={handleSubmit(onSubmit)} className="dark:text-black">
@@ -183,9 +188,13 @@ export const DraftForm = () => {
             <Sparkles className="mr-2 h-4 w-4" />
             Generate Description
           </Button>
-      <div className="items-start flex justify-center mt-10 ">
-        <Textarea className='border-2 h-[50vh]  border-black w-screen'  placeholder='aqui se generara su descripcion' value={description}/>
-      </div>
+          <div className="items-start flex justify-center mt-10 ">
+            <Textarea
+              className="border-2 h-[50vh]  border-black w-screen"
+              placeholder="aqui se generara su descripcion"
+              value={description}
+            />
+          </div>
         </div>
       </form>
     </div>
