@@ -63,6 +63,15 @@ export const DraftForm = () => {
         <div className="bg-white rounded-lg shadow-md p-6">
           <h2 className="text-2xl font-semibold mb-6">Draft-To-Description</h2>
           <div className="mb-4">
+            <div className="mb-4">
+              <Label>OpenAI API Key</Label>
+              <Input
+                {...register("apiKey", { required: true })}
+                placeholder="Ingrese su clave de API de OpenAI"
+              />
+            </div>
+          </div>
+          <div className="mb-4">
             <Controller
               name="propertyType"
               control={control}
